@@ -1,0 +1,37 @@
+{% extends 'logged.html' %}
+
+{% block content %}
+<div class="container mb-3">
+    <div class="row" style="height: 600px">
+        <div class="offset-md-2 col-md-8 card h-50 mb-3">
+            <div class="card-body text-center">
+                <h5 class="card-title">
+                    Face analyser
+                </h5>
+                <h6 class="card-subtitle mb-2 text-muted">
+                    Upload pictures of people to analyse face and estimate age and gender
+                </h6>
+                <p class="card-text">
+                    <form method="post" action="/analyse/" enctype="multipart/form-data">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                            </div>
+                            <div class="custom-file">
+                                <input type="file" name="image" class="custom-file-input" id="inputImage" aria-describedby="inputGroupFileAddon01" required>
+                                <label class="custom-file-label" for="inputImage">Choose file</label>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-secondary">Search</button>
+                    </form>
+                    {% with messages = get_flashed_messages() %}
+                    {% for message in messages %}
+                        <p class="text-center text-danger">{{ message }}</p>
+                    {% endfor %}
+                    {% endwith %}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

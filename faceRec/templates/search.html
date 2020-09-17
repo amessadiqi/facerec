@@ -1,0 +1,54 @@
+{% extends 'logged.html' %}
+
+{% block content %}
+<div class="container mb-3">
+    <div class="row" style="height: 600px">
+        <div class="col-md-8 card h-75 mb-3">
+            <div class="card-body">
+                <h5 class="card-title">
+                    Search result
+                </h5>
+                {% if result == False: %}
+                <h6 class="card-subtitle mb-2 text-muted">
+                    No user found
+                </h6>
+                <p class="card-text">
+                    <img class="rounded" src={{ url_for('static', filename='img/temp/' + uploaded_image) }} height="96" width="96">
+                    <p class="text-muted"><em>Result found in {{ time }} seconds.</em></p>
+                </p>
+                {% else: %}
+                <h6 class="card-subtitle mb-2 text-muted">
+                    User infos
+                </h6>
+                <p class="card-text">
+                    <div class="container text-center mb-2">
+                        <img class="rounded mr-3" src={{ url_for('static', filename='img/temp/' + uploaded_image) }} height="96" width="96">
+                        <img class="rounded" src={{ result.profile_picture }} height="96" width="96">
+                    </div>
+                    <ul>
+                        <li><em>First name</em> : {{ result.first_name }}</li>
+                        <li><em>Last name</em> : {{ result.last_name }}</li>
+                        <li><em>Gender</em> : {% if result.gender=='m': %}Male{% else: %}Female{% endif %}</li>
+                        <li><em>Age</em> : {{ 2020 - result.birthday.year }}</li>
+                        <li><em>Address</em> : {{ result.address }}</li>
+                        <li><em>Email address</em> : {{ result.email }}</li>
+                    </ul>
+                    <p class="text-muted"><em>Result found in {{ time }} seconds.</em></p>
+                </p>
+                {% endif %}
+            </div>
+        </div>
+        <div class="offset-md-1 col-md-3 card overflow-auto h-100 mb-3">
+            {% for user in users: %}
+            <div class="media text-muted pt-3">
+                <img src={{ user.profile_picture }} class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">{{ user.first_name }} {{ user.last_name }}</strong>
+                    {{ user.email }}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}

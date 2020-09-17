@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" class="h-100">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>FaceRec</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link href={{ url_for('static', filename='css/style.css') }} rel="stylesheet">
+    <link rel="icon" href={{ url_for('static', filename='img/favicon.png') }}>
+    {% block style %}{% endblock %}
+</head>
+<body class="d-flex flex-column h-100">
+    {% block header %}{% endblock %}
+
+    {% block content %}{% endblock %}
+
+    <footer class="border-top mt-auto py-3">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <h5>Powered by</h5>
+                    <div class="row">
+                        <div class="offset-3 col-lg-2 text-center">
+                            <img src={{ url_for('static', filename='img/flask_logo.png') }} class="rounded" alt="Flask" height="64">
+                        </div>
+                        <div class="col-lg-2 text-center">
+                            <img src={{ url_for('static', filename='img/opencv_logo.png') }} class="rounded" alt="OpenCV" height="64">
+                        </div>
+                        <div class="col-lg-2 text-center">
+                            <img src={{ url_for('static', filename='img/dlib_logo.png') }} class="rounded" alt="Dlib" height="55">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <p class="mt-4 mb-0 text-muted text-center">&copy; Essadiqi & Fahmi</p>
+    </footer>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="/docs/4.5/assets/js/vendor/jquery.slim.min.js"><\/script>')</script><script src="/docs/4.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-1CmrxMRARb6aLqgBO7yyAxTOQE2AKb9GfXnEo760AUcUmFx3ibVJJAzGytlQcNXd" crossorigin="anonymous"></script>
+</body>
+</html>

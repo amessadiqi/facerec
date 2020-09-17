@@ -1,0 +1,85 @@
+{% extends 'logged.html' %}
+
+{% block content %}
+<div class="container mb-3">
+    <div class="row" style="height: 600px">
+        <div class="col-md-8 h-50 mb-3">
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Search for users
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Upload facial picture to search a user
+                    </h6>
+                    <p class="card-text">
+                        <form method="post" action="/search/" enctype="multipart/form-data">
+                            <div class="input-group mb-3">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                </div>
+                                <div class="custom-file">
+                                    <input type="file" name="image" class="custom-file-input" id="inputImage" aria-describedby="inputGroupFileAddon01" required>
+                                    <label class="custom-file-label" for="inputImage">Choose file</label>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-outline-secondary">Search</button>
+                        </form>
+                    </p>
+                </div>
+            </div>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">
+                        Compare faces
+                    </h5>
+                    <h6 class="card-subtitle mb-2 text-muted">
+                        Upload facial pictures to test if images match face
+                    </h6>
+                    <p class="card-text">
+                        <form method="post" action="/compare/" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="input-group mb-3 col-md-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" name="image1" class="custom-file-input" id="inputImage1" aria-describedby="inputGroupFileAddon01" required>
+                                        <label class="custom-file-label" for="inputImage">Choose file</label>
+                                    </div>
+                                </div>
+                                <div class="input-group mb-3 col-md-6">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupFileAddon02">Upload</span>
+                                    </div>
+                                    <div class="custom-file">
+                                        <input type="file" name="image2" class="custom-file-input" id="inputImage2" aria-describedby="inputGroupFileAddon02" required>
+                                        <label class="custom-file-label" for="inputImage">Choose file</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-outline-secondary">Compare</button>
+                        </form>
+                    </p>
+                </div>
+            </div>
+            {% with messages = get_flashed_messages() %}
+            {% for message in messages %}
+                <p class="text-center text-danger">{{ message }}</p>
+            {% endfor %}
+            {% endwith %}
+        </div>
+        <div class="offset-md-1 col-md-3 card overflow-auto h-100 mb-3">
+            {% for user in users: %}
+            <div class="media text-muted pt-3">
+                <img src={{ user.profile_picture }} class="bd-placeholder-img mr-2 rounded" width="32" height="32" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: 32x32">
+                <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                    <strong class="d-block text-gray-dark">{{ user.first_name }} {{ user.last_name }}</strong>
+                    {{ user.email }}
+                </p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
